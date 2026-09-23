@@ -205,6 +205,11 @@
     var b = e.target.closest('[data-monto]');
     if (b) $('#reMonto').value = b.getAttribute('data-monto');
   });
+  $('#reArchivo').addEventListener('change', function () {
+    var f = this.files[0], txt = $('#reUploadedTxt');
+    if (f) { txt.hidden = false; txt.innerHTML = '<svg><use href="#i-check"/></svg> ' + esc(f.name); }
+    else { txt.hidden = true; txt.textContent = ''; }
+  });
   $('#formRecarga').addEventListener('submit', function (e) {
     e.preventDefault();
     var btn = $('#reEnviar'), err = $('#reError');
@@ -214,6 +219,7 @@
     api.pedirRecarga(monto, archivo, $('#reNota').value.trim()).then(function () {
       cerrarRecarga();
       $('#formRecarga').reset();
+      $('#reUploadedTxt').hidden = true;
       toast('Recarga enviada. Te avisamos al aprobarla.');
       if (dCuenta.classList.contains('is-open')) { cargarCuenta(); verTab('recargas'); }
     }).catch(function (e2) {
@@ -247,7 +253,7 @@
     }, Promise.resolve()).then(function () {
       M3K.cart.vaciar(listos.map(function (x) { return x.it.id; }));
       btn.disabled = false;
-      txt.textContent = 'Comprar con mi saldo';
+      txt.textContent = 'O paga con mi saldo';
       if (listos.length) {
         var enEspera = listos.filter(function (x) { return !x.r.entregado; }).length;
         toast(enEspera ? 'Compra lista. ' + enEspera + ' en camino.' : '¡Listo! Tus datos ya están en tu cuenta.');
@@ -371,6 +377,9 @@
       if (!$('#pNombre').value) $('#pNombre').value = s.nombre || '';
       if (!$('#pWhats').value) $('#pWhats').value = s.whatsapp || '';
     }
+    var cb = $('#cartBuy');
+    cb.hidden = !s;
+    if (s) $('span', cb).textContent = 'O paga con mi saldo (' + bs(s.saldo) + ' disponibles)';
     pintarZona();
   }
 

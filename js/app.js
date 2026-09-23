@@ -227,6 +227,7 @@
   function cartMessage() {
     var t = cartTotals();
     var name = $('#profileName').value.trim();
+    var tieneComprobante = comprobanteInput && comprobanteInput.files[0];
     var lines = ['Hola Mikaela 3K, quiero hacer este pedido:', ''];
     cart.forEach(function (it) {
       var p = M3K.buscar(it.id);
@@ -234,7 +235,7 @@
     });
     lines.push('', 'Total: ' + t.total + ' Bs');
     lines.push('Nombre para mi perfil: ' + (name || '(te lo paso)'));
-    lines.push('', 'Ahora pago con el QR y te envío el comprobante.');
+    lines.push('', tieneComprobante ? 'Ya pagué con el QR. Te comparto mi comprobante de pago.' : 'Ya pagué con el QR y en un momento te envío mi comprobante.');
     return lines.join('\n');
   }
 
@@ -265,6 +266,7 @@
       }).join('');
       $('#cartFoot').hidden = false;
       $('#cartTotal').textContent = t.total + ' Bs';
+      $('#cartQrMonto').textContent = t.total + ' Bs';
       var saveEl = $('#cartSave');
       var parts = [];
       if (t.save > 0) parts.push('Ahorras ' + t.save + ' Bs con planes de 3 meses');
@@ -295,7 +297,32 @@
     if (rm) removeFromCart(rm.getAttribute('data-rm'));
     if (e.target.closest('[data-close-cart]')) closeCart();
   });
-  $('#cartSend').addEventListener('click', function () { this.href = M3K.waLink(cartMessage()); });
+  var comprobanteInput = $('#cartComprobante');
+  comprobanteInput.addEventListener('change', function () {
+    var f = this.files[0], txt = $('#cartUploadedTxt');
+    if (f) { txt.hidden = false; txt.innerHTML = '<svg><use href="#i-check"/></svg> ' + esc(f.name); }
+    else { txt.hidden = true; txt.textContent = ''; }
+  });
+
+  $('#cartSend').addEventListener('click', function () {
+    var btn = this, label = $('span', btn), original = label.textContent;
+    var texto = cartMessage(), file = comprobanteInput.files[0];
+    function abrirWhatsApp() { window.open(M3K.waLink(texto), '_blank', 'noopener'); }
+    if (file && window.navigator && navigator.share && navigator.canShare) {
+      var datos = { text: texto };
+      try { if (navigator.canShare({ files: [file] })) datos.files = [file]; } catch (e) { /* sin soporte de archivos */ }
+      if (navigator.canShare(datos)) {
+        btn.disabled = true; label.textContent = 'Abriendo…';
+        navigator.share(datos).then(function () {
+          toast('¡Listo! Revisa que tu comprobante haya llegado a Mikaela.');
+        }).catch(function (err) {
+          if (!err || err.name !== 'AbortError') abrirWhatsApp();
+        }).then(function () { btn.disabled = false; label.textContent = original; });
+        return;
+      }
+    }
+    abrirWhatsApp();
+  });
   window.addEventListener('resize', function () { document.body.classList.toggle('has-combo', cart.length > 0 && window.innerWidth <= 760); });
 
   /* ---------- Televisor ---------- */

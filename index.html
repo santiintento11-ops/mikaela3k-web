@@ -398,17 +398,27 @@
     <div class="cart__total"><span>Total</span><b id="cartTotal">0 Bs</b></div>
     <p class="cart__save" id="cartSave" hidden></p>
     <label class="field field--dark"><span>Nombre para tu perfil</span><input id="profileName" type="text" autocomplete="given-name" placeholder="Ej. Andrea"></label>
-    <button class="btn btn--primary btn--block" type="button" id="cartBuy"><svg><use href="#i-check"/></svg> <span>Comprar con mi saldo</span></button>
-    <a class="btn btn--ghost btn--block" id="cartSend" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg> Pedir por WhatsApp</a>
-    <p class="cart__hint" id="cartHint" hidden></p>
-    <details class="cart__pay">
-      <summary>¿Cómo pago? <svg><use href="#i-chev"/></svg></summary>
-      <div>
-        <img src="img/qr-altoke.webp" alt="QR de pago Altoke" width="160" height="162" loading="lazy">
-        <p>Paga con el QR de Altoke, coloca <b>Varios</b> en la referencia y envía tu comprobante por WhatsApp.</p>
-        <a class="linkish" href="img/qr-altoke.png" download="QR-Mikaela-3K.png">Guardar QR</a>
+
+    <div class="cart__qr">
+      <img src="img/qr-altoke.webp" alt="QR de pago Altoke" width="150" height="152" loading="lazy">
+      <div class="cart__qr__info">
+        <p class="cart__qr__k">Pagar con QR</p>
+        <p class="cart__qr__monto">Escanea y paga <b id="cartQrMonto">0 Bs</b></p>
+        <p class="cart__qr__ref">En referencia coloca <b>Varios</b></p>
+        <a class="linkish" href="img/qr-altoke.png" download="QR-Mikaela-3K.png"><svg><use href="#i-down"/></svg> Guardar QR</a>
       </div>
-    </details>
+    </div>
+
+    <div class="cart__upload">
+      <span class="field__label">Subir el comprobante de pago</span>
+      <label class="cart__upload__btn" for="cartComprobante"><svg><use href="#i-plus"/></svg> Elegir archivo</label>
+      <input id="cartComprobante" class="sr-only" type="file" accept="image/*,application/pdf">
+    </div>
+    <p class="cart__uploaded" id="cartUploadedTxt" hidden></p>
+
+    <button class="btn btn--primary btn--block" type="button" id="cartSend"><svg><use href="#i-wa"/></svg> <span>Seguir con la compra por WhatsApp</span></button>
+    <p class="cart__hint" id="cartHint" hidden></p>
+    <button class="linkish cart__saldoAlt" type="button" id="cartBuy" hidden><span>Pagar con mi saldo</span></button>
   </footer>
 </aside>
 
@@ -533,7 +543,12 @@
     <form id="formRecarga">
       <label class="field field--dark"><span>¿Cuánto pagaste? (Bs)</span><input id="reMonto" type="number" min="1" step="1" required placeholder="Ej. 100"></label>
       <div class="montos" id="montosRapidos"></div>
-      <label class="field field--dark"><span>Foto del comprobante</span><input id="reArchivo" type="file" accept="image/*,application/pdf"></label>
+      <div class="cart__upload">
+        <span class="field__label">Foto del comprobante</span>
+        <label class="cart__upload__btn" for="reArchivo"><svg><use href="#i-plus"/></svg> Elegir archivo</label>
+        <input id="reArchivo" class="sr-only" type="file" accept="image/*,application/pdf">
+      </div>
+      <p class="cart__uploaded" id="reUploadedTxt" hidden></p>
       <label class="field field--dark"><span>Nota (opcional)</span><input id="reNota" type="text" placeholder="Ej. pagué desde el banco de mi mamá"></label>
       <p class="modal__error" id="reError" hidden></p>
       <button class="btn btn--primary btn--block" type="submit" id="reEnviar">Enviar solicitud de recarga</button>
