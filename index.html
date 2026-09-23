@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mikaela 3K Streaming · Netflix, anime, música y más en bolivianos</title>
+  <meta name="description" content="Netflix, Disney+, Prime Video, HBO Max, Crunchyroll, iQIYI, Spotify, YouTube Premium, TV por cable y apps de IA. Pagas con QR en bolivianos y recibes tu cuenta por WhatsApp.">
+  <meta name="theme-color" content="#030605">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mikaela 3K Streaming">
+  <meta property="og:description" content="Cambia de canal, no de tienda. 16 plataformas desde 20 Bs al mes, pago con QR y activación por WhatsApp.">
+  <meta property="og:image" content="img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/logo.webp">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/cuenta.css">
+</head>
+<body class="is-loading">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2.4a9.6 9.6 0 0 0-8.3 14.5L2.4 21.6l4.8-1.3A9.6 9.6 0 1 0 12 2.4Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.7 7.5c.3-.3.8-.3 1 .1l.9 1.8c.2.3.1.7-.2 1l-.6.6c.6 1.3 1.6 2.3 2.9 2.9l.6-.6c.3-.3.7-.4 1-.2l1.8.9c.4.2.4.7.1 1l-.8.8c-.6.6-1.5.7-2.3.4a9.2 9.2 0 0 1-4.9-4.9c-.3-.8-.2-1.7.4-2.3l.1-.3Z" fill="currentColor"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4.5 12 20 4.5 15.5 20l-3.2-6.3L4.5 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m12.3 13.7 3.4-3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.5c.5 4.6 2.9 7 7.5 7.5-4.6.5-7 2.9-7.5 7.5-.5-4.6-2.9-7-7.5-7.5 4.6-.5 7-2.9 7.5-7.5Z" fill="currentColor"/></symbol>
+</svg>
+
+<!-- Intro: sintonizando -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__logo"><img src="img/logo.webp" alt="" width="640" height="640"></div>
+  <div class="loader__line">
+    <span>Sintonizando</span>
+    <b id="loaderCh">CH 01</b>
+  </div>
+  <div class="loader__bar"><i></i></div>
+</div>
+
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" aria-label="Mikaela 3K Streaming, inicio">
+    <img src="img/logo-128.webp" alt="" width="44" height="44">
+    <span><b>Mikaela 3K</b><small>Streaming</small></span>
+  </a>
+  <nav class="nav__links" aria-label="Principal">
+    <a href="#catalogo">Catálogo</a>
+    <a href="#cartelera">Promos</a>
+    <a href="#comprar">Saldo</a>
+    <a href="#revendedores">Revendedores</a>
+    <a href="#zona">Zona revendedor</a>
+    <a href="#preguntas">Preguntas</a>
+  </nav>
+  <div class="nav__actions">
+    <button class="nav__user" id="navUser" type="button" aria-label="Mi cuenta">
+      <span class="nav__user__av" id="navAv" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4.8 20c.6-3.6 3.6-5.6 7.2-5.6s6.6 2 7.2 5.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </span>
+      <span class="nav__user__txt"><b id="navName">Entrar</b><small id="navSaldo">Crea tu cuenta</small></span>
+    </button>
+    <button class="nav__combo" id="openCart" type="button">
+      <span>Mi combo</span><b class="badge" id="cartCount">0</b>
+    </button>
+    <a class="nav__wa" data-wa="Hola Mikaela 3K, quiero información." href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+      <svg><use href="#i-wa"/></svg>
+    </a>
+    <button class="nav__burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <nav aria-label="Menú">
+    <a href="#catalogo"><small>01</small>Catálogo</a>
+    <a href="#cartelera"><small>02</small>Promos</a>
+    <a href="#comprar"><small>03</small>Saldo</a>
+    <a href="#revendedores"><small>04</small>Revendedores</a>
+    <a href="#zona"><small>05</small>Zona revendedor</a>
+    <a href="#preguntas"><small>06</small>Preguntas</a>
+  </nav>
+  <a class="btn btn--primary btn--block" data-wa="Hola Mikaela 3K, quiero información." href="#" target="_blank" rel="noopener">
+    <svg><use href="#i-wa"/></svg> Escribir por WhatsApp
+  </a>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="inicio" aria-label="Inicio">
+    <div class="hero__copy">
+      <div class="switch" role="tablist" aria-label="¿Para quién es?">
+        <button type="button" role="tab" aria-selected="true" data-mode="cliente">Compro para mí</button>
+        <button type="button" role="tab" aria-selected="false" data-mode="revendedor">Quiero revender</button>
+        <i class="switch__pill" aria-hidden="true"></i>
+      </div>
+
+      <p class="kicker"><span class="live" aria-hidden="true"></span><span id="heroKicker">Streaming en bolivianos · Activación por WhatsApp</span></p>
+
+      <h1 class="hero__title" id="heroTitle">
+        <span class="line"><span>Cambia de</span></span>
+        <span class="line"><span><em>canal,</em></span></span>
+        <span class="line"><span>no de tienda.</span></span>
+      </h1>
+
+      <p class="hero__lead" id="heroLead">Netflix, Disney+, anime, doramas, música, TV por cable y apps de IA en un solo lugar. Pagas con QR en bolivianos y recibes tu cuenta por WhatsApp.</p>
+
+      <div class="hero__cta">
+        <a class="btn btn--primary magnetic" id="heroCta" href="#catalogo"><span id="heroCtaTxt">Ver catálogo</span> <svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost" id="heroCta2" data-wa="Hola Mikaela 3K, quiero información." href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg> <span>Escribir por WhatsApp</span></a>
+      </div>
+
+      <dl class="hero__stats" id="heroStats"></dl>
+    </div>
+
+    <div class="hero__tv">
+      <div class="tv" id="tv">
+        <div class="tv__frame">
+          <div class="tv__screen" id="tvScreen" aria-live="polite">
+            <div class="tv__channel" id="tvChannel"></div>
+            <canvas class="tv__static" id="tvStatic" width="240" height="150" aria-hidden="true"></canvas>
+            <div class="tv__scan" aria-hidden="true"></div>
+            <div class="tv__glass" aria-hidden="true"></div>
+            <span class="tv__osd" id="tvOsd">CH 01</span>
+            <img class="tv__bug" src="img/logo-128.webp" alt="" width="56" height="56">
+            <i class="tv__progress" id="tvProgress" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="tv__remote">
+          <button class="tv__btn" id="tvPrev" type="button" aria-label="Canal anterior"><svg style="transform:scaleX(-1)"><use href="#i-chev"/></svg></button>
+          <div class="tv__dial" aria-hidden="true"><span>CH</span><b id="tvNum">01</b><small>/ 16</small></div>
+          <button class="tv__btn" id="tvNext" type="button" aria-label="Canal siguiente"><svg><use href="#i-chev"/></svg></button>
+          <button class="tv__add" id="tvAdd" type="button"><svg><use href="#i-plus"/></svg><span>Agregar a mi combo</span></button>
+        </div>
+        <p class="tv__hint">Usa <kbd>◀</kbd> <kbd>▶</kbd> para cambiar de canal</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GUSTOS ============ -->
+  <section class="moods" aria-label="¿Qué quieres ver hoy?">
+    <p class="moods__q"><em>¿Qué quieres ver hoy?</em></p>
+    <div class="moods__list" id="moods"></div>
+  </section>
+
+  <!-- ============ MARQUESINA ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__row" data-dir="1"><div class="marquee__track" id="mq1"></div></div>
+    <div class="marquee__row marquee__row--solid" data-dir="-1"><div class="marquee__track" id="mq2"></div></div>
+  </div>
+
+  <!-- ============ 01 CATÁLOGO ============ -->
+  <section class="section catalog" id="catalogo" aria-labelledby="catTitle">
+    <header class="sec-head" data-reveal>
+      <p class="sec-tag"><span>01</span>Guía de canales · Clientes</p>
+      <h2 id="catTitle">Elige qué ver.<br><em>Nosotros</em> lo activamos.</h2>
+      <p class="sec-lead">Toca <b>+</b> para sumar plataformas a tu combo. El plan de 3 meses casi siempre te sale más barato.</p>
+    </header>
+
+    <div class="catalog__bar" id="catBar">
+      <div class="period" role="radiogroup" aria-label="Duración del plan">
+        <button type="button" role="radio" aria-checked="true" data-meses="1">1 mes</button>
+        <button type="button" role="radio" aria-checked="false" data-meses="3">3 meses <small>ahorra</small></button>
+        <i class="period__pill" aria-hidden="true"></i>
+      </div>
+      <div class="tabs" id="tabs" role="tablist" aria-label="Categorías"></div>
+    </div>
+
+    <div class="mood-note" id="moodNote" hidden>
+      <span>Mostrando lo mejor para <b id="moodName"></b></span>
+      <button type="button" id="moodClear">Ver todo <svg><use href="#i-close"/></svg></button>
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- ============ 02 CARTELERA ============ -->
+  <section class="section rail-sec" id="cartelera" aria-labelledby="railTitle">
+    <header class="sec-head sec-head--row" data-reveal>
+      <div>
+        <p class="sec-tag"><span>02</span>En cartelera</p>
+        <h2 id="railTitle">Todas las promos,<br><em>en grande.</em></h2>
+      </div>
+      <p class="sec-lead">Desliza para ver cada una. Tócala para verla en grande o guardarla.</p>
+    </header>
+    <div class="rail" id="rail" tabindex="0" aria-label="Promociones"></div>
+  </section>
+
+  <!-- ============ 03 SALDO ============ -->
+  <section class="section buy" id="comprar" aria-labelledby="buyTitle">
+    <header class="sec-head" data-reveal>
+      <p class="sec-tag"><span>03</span>Saldo y entrega al instante</p>
+      <h2 id="buyTitle">Recarga una vez.<br>Compra <em>cuando quieras.</em></h2>
+      <p class="sec-lead">Cargas saldo con el QR y desde ahí compras en un toque: si la cuenta está en stock, te llega al instante en tu panel. Si prefieres, también puedes pedir todo por WhatsApp como siempre.</p>
+    </header>
+
+    <div class="buy__grid">
+      <ol class="steps" id="steps">
+        <li data-reveal>
+          <b>01</b>
+          <div><h3>Crea tu cuenta</h3><p>Con tu correo y una contraseña. Ahí vive tu saldo y tus cuentas compradas.</p></div>
+        </li>
+        <li data-reveal>
+          <b>02</b>
+          <div><h3>Recarga tu saldo</h3><p>Paga con el QR de Altoke (en referencia coloca <mark>Varios</mark>) y sube la foto del comprobante. Mikaela lo aprueba y tu saldo queda cargado.</p></div>
+        </li>
+        <li data-reveal>
+          <b>03</b>
+          <div><h3>Compra en un toque</h3><p>Eliges tu plataforma y se descuenta de tu saldo. Sin escribir a nadie, a la hora que sea.</p></div>
+        </li>
+        <li data-reveal>
+          <b>04</b>
+          <div><h3>Recibe tu cuenta</h3><p>Los datos de acceso aparecen en tu panel al instante. Si justo no hay stock, tu pedido queda en camino y soporte te lo resuelve por WhatsApp.</p></div>
+        </li>
+      </ol>
+
+      <div class="buy__side">
+      <article class="saldo-card" id="saldoCard" data-reveal>
+        <p class="saldo-card__k">Tu saldo</p>
+        <p class="saldo-card__n"><b id="saldoNum">0</b> <span>Bs</span></p>
+        <p class="saldo-card__t" id="saldoTexto">Crea tu cuenta para recargar saldo y comprar al instante.</p>
+        <div class="saldo-card__btns">
+          <button class="btn btn--primary btn--sm" type="button" id="saldoBtn1">Crear mi cuenta</button>
+          <button class="btn btn--ghost btn--sm" type="button" id="saldoBtn2">Cómo funciona</button>
+        </div>
+      </article>
+
+      <article class="ticket" data-reveal aria-label="Datos de pago">
+        <header class="ticket__head">
+          <span>Recarga aquí</span>
+          <b>QR Altoke</b>
+        </header>
+        <div class="ticket__qr">
+          <img src="img/qr-altoke.webp" alt="Código QR de pago Altoke de Mikaela 3K" width="520" height="528" loading="lazy">
+        </div>
+        <div class="ticket__cut" aria-hidden="true"></div>
+        <dl class="ticket__rows">
+          <div><dt>Cuenta</dt><dd id="payAcc">2617575-000-002</dd><button type="button" class="copy" data-copy="2617575-000-002" aria-label="Copiar número de cuenta"><svg><use href="#i-copy"/></svg></button></div>
+          <div><dt>Referencia</dt><dd>Varios</dd><button type="button" class="copy" data-copy="Varios" aria-label="Copiar referencia"><svg><use href="#i-copy"/></svg></button></div>
+          <div><dt>QR válido hasta</dt><dd>27 ago 2027</dd></div>
+        </dl>
+        <div class="ticket__actions">
+          <a class="btn btn--ghost btn--sm" href="img/qr-altoke.png" download="QR-Mikaela-3K.png"><svg><use href="#i-down"/></svg> Guardar QR</a>
+          <button class="btn btn--primary btn--sm" type="button" id="btnRecargar"><svg><use href="#i-plus"/></svg> Subir comprobante</button>
+        </div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 POR QUÉ SER REVENDEDOR (público) ============ -->
+  <section class="resell" id="revendedores" aria-labelledby="resTitle">
+    <div class="resell__inner">
+      <header class="sec-head" data-reveal>
+        <p class="sec-tag"><span>04</span>Hazte revendedor</p>
+        <h2 id="resTitle">Vende streaming<br><em>sin comprar stock.</em></h2>
+        <p class="sec-lead">Tú consigues a tus clientes; nosotros ponemos el catálogo, las cuentas y el material. Recargas tu saldo, compras al precio de revendedor y entregas al instante.</p>
+      </header>
+
+      <ul class="motivos">
+        <li data-reveal><b>01</b><h3>Precio de revendedor</h3><p>Tu propia lista de precios, más baja que la del público. La ves apenas Mikaela aprueba tu cuenta.</p></li>
+        <li data-reveal><b>02</b><h3>Sin invertir de más</h3><p>No compras stock por adelantado ni te quedas con cuentas sin vender: recargas saldo y compras solo lo que ya vendiste.</p></li>
+        <li data-reveal><b>03</b><h3>Entrega al instante</h3><p>Compras desde tu panel a cualquier hora y los datos de acceso salen solos. Tu cliente no espera.</p></li>
+        <li data-reveal><b>04</b><h3>16 plataformas listas</h3><p>Netflix, Disney+, anime, doramas, música, TV por cable y apps de IA. Todo el catálogo para ofrecer.</p></li>
+        <li data-reveal><b>05</b><h3>Material para vender</h3><p>Flyers listos para tus estados de WhatsApp, Facebook y TikTok. Los descargas de aquí abajo.</p></li>
+        <li data-reveal><b>06</b><h3>Soporte de verdad</h3><p>Si una cuenta falla, escribes a soporte y se resuelve. No quedas mal con tu cliente.</p></li>
+      </ul>
+
+      <div class="postular" id="postular" data-reveal>
+        <div class="postular__txt">
+          <h3>Postula en un minuto</h3>
+          <p>Cuéntanos quién eres y cuántas cuentas piensas mover al mes. Mikaela revisa tu solicitud y te habilita los precios de revendedor en tu cuenta.</p>
+          <p class="postular__nota" id="postularNota">Primero crea tu cuenta para poder habilitártela.</p>
+        </div>
+        <form class="postular__form" id="formPostular">
+          <label class="field"><span>Tu nombre</span><input id="pNombre" type="text" autocomplete="name" placeholder="Ej. Carla Pérez" required></label>
+          <label class="field"><span>Ciudad</span><input id="pCiudad" type="text" autocomplete="address-level2" placeholder="Ej. Santa Cruz" required></label>
+          <label class="field"><span>WhatsApp</span><input id="pWhats" type="tel" autocomplete="tel" placeholder="Ej. 700 12345" required></label>
+          <label class="field"><span>¿Cuántas cuentas al mes?</span>
+            <select id="pVolumen">
+              <option>Recién empiezo</option>
+              <option>De 1 a 5</option>
+              <option>De 6 a 15</option>
+              <option>De 16 a 30</option>
+              <option>Más de 30</option>
+            </select>
+          </label>
+          <button class="btn btn--dark btn--block" type="submit">Enviar solicitud</button>
+          <p class="postular__ok" id="postularOk" hidden>¡Listo! Tu solicitud llegó. Te avisamos por WhatsApp apenas esté aprobada.</p>
+        </form>
+      </div>
+
+      <div class="kit">
+        <header class="kit__head" data-reveal>
+          <h3>Kit para tus estados</h3>
+          <p>Descarga los flyers y compártelos en WhatsApp, Facebook o TikTok.</p>
+        </header>
+        <div class="kit__grid" id="kit"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 ZONA REVENDEDOR (privada) ============ -->
+  <section class="section zona" id="zona" aria-labelledby="zonaTitle">
+    <header class="sec-head" data-reveal>
+      <p class="sec-tag"><span>05</span>Zona revendedor</p>
+      <h2 id="zonaTitle">Precios de mayor,<br><em>solo</em> para ti.</h2>
+    </header>
+
+    <div class="zona__caja" data-reveal>
+      <!-- Cerrada -->
+      <div class="zona__lock" id="zonaLock">
+        <span class="zona__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="4.5" y="10" width="15" height="10.5" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="15.2" r="1.5" fill="currentColor"/></svg>
+        </span>
+        <h3 id="zonaLockTitulo">Esta sección es privada</h3>
+        <p id="zonaLockTexto">Los precios de revendedor solo se ven con una cuenta habilitada. Entra con tu usuario o postula: la aprobación es rápida.</p>
+        <div class="zona__btns">
+          <button class="btn btn--primary" type="button" id="zonaEntrar">Entrar a mi cuenta</button>
+          <a class="btn btn--ghost" href="#postular">Quiero ser revendedor</a>
+        </div>
+      </div>
+
+      <!-- Abierta -->
+      <div class="zona__open" id="zonaOpen" hidden>
+        <div class="zona__top">
+          <div>
+            <p class="zona__hola">Hola, <b id="zonaNombre">revendedor</b></p>
+            <p class="zona__sub">Estos son tus precios. En el catálogo de arriba también los verás aplicados.</p>
+          </div>
+          <div class="zona__saldo"><span>Tu saldo</span><b id="zonaSaldo">0 Bs</b></div>
+        </div>
+        <div class="zona__tabla" id="zonaTabla"></div>
+        <p class="zona__pie">¿Algo no cuadra o necesitas volumen grande? <a data-wa="Hola Mikaela 3K, soy revendedor(a) y necesito consultar algo de mis precios." href="#" target="_blank" rel="noopener" class="linkish">Escríbele a Mikaela</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 PREGUNTAS ============ -->
+  <section class="section faq" id="preguntas" aria-labelledby="faqTitle">
+    <header class="sec-head" data-reveal>
+      <p class="sec-tag"><span>06</span>Preguntas frecuentes</p>
+      <h2 id="faqTitle">Lo que todos <em>preguntan.</em></h2>
+      <p class="sec-lead">¿No está tu duda? Pregúntale a <button type="button" class="linkish" data-open-mika>Mika</button>, nuestro asistente, o escríbenos.</p>
+    </header>
+    <div class="acc" id="faq"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot__word" aria-hidden="true"><span>Mikaela</span><span>3K</span></div>
+  <div class="foot__grid">
+    <div class="foot__brand">
+      <img src="img/logo.webp" alt="Logo Mikaela 3K Streaming" width="160" height="160" loading="lazy">
+      <p>Streaming en bolivianos. Pagas con QR y recibes tu cuenta por WhatsApp.</p>
+    </div>
+    <nav class="foot__col" aria-label="Secciones">
+      <p>Secciones</p>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#comprar">Saldo y recargas</a>
+      <a href="#revendedores">Hazte revendedor</a>
+      <a href="#zona">Zona revendedor</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="panel.html">Panel de Mikaela</a>
+    </nav>
+    <div class="foot__col">
+      <p>Contacto</p>
+      <a data-wa="Hola Mikaela 3K, quiero información." href="#" target="_blank" rel="noopener">WhatsApp <span id="footPhone">+591 609 53013</span></a>
+      <a href="img/qr-altoke.png" download="QR-Mikaela-3K.png">Descargar QR de pago</a>
+      <button type="button" class="linkish" data-open-mika>Chatear con Mika</button>
+    </div>
+  </div>
+  <div class="foot__base">
+    <span>© <span id="year">2026</span> Mikaela 3K Streaming</span>
+    <span>Las marcas mencionadas pertenecen a sus respectivos dueños.</span>
+    <a href="#top" class="foot__top">Volver arriba <svg style="transform:rotate(-90deg)"><use href="#i-arrow"/></svg></a>
+  </div>
+</footer>
+
+<!-- ============ COMBO (carrito) ============ -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="cart" id="cart" aria-hidden="true" aria-labelledby="cartTitle" role="dialog">
+  <header class="cart__head">
+    <div><p class="cart__k">Tu pedido</p><h2 id="cartTitle">Mi combo</h2></div>
+    <button type="button" class="icon-btn" id="closeCart" aria-label="Cerrar combo"><svg><use href="#i-close"/></svg></button>
+  </header>
+  <div class="cart__body" id="cartBody"></div>
+  <footer class="cart__foot" id="cartFoot">
+    <div class="cart__total"><span>Total</span><b id="cartTotal">0 Bs</b></div>
+    <p class="cart__save" id="cartSave" hidden></p>
+    <label class="field field--dark"><span>Nombre para tu perfil</span><input id="profileName" type="text" autocomplete="given-name" placeholder="Ej. Andrea"></label>
+    <button class="btn btn--primary btn--block" type="button" id="cartBuy"><svg><use href="#i-check"/></svg> <span>Comprar con mi saldo</span></button>
+    <a class="btn btn--ghost btn--block" id="cartSend" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg> Pedir por WhatsApp</a>
+    <p class="cart__hint" id="cartHint" hidden></p>
+    <details class="cart__pay">
+      <summary>¿Cómo pago? <svg><use href="#i-chev"/></svg></summary>
+      <div>
+        <img src="img/qr-altoke.webp" alt="QR de pago Altoke" width="160" height="162" loading="lazy">
+        <p>Paga con el QR de Altoke, coloca <b>Varios</b> en la referencia y envía tu comprobante por WhatsApp.</p>
+        <a class="linkish" href="img/qr-altoke.png" download="QR-Mikaela-3K.png">Guardar QR</a>
+      </div>
+    </details>
+  </footer>
+</aside>
+
+<button class="combo-bar" id="comboBar" type="button" hidden>
+  <span class="combo-bar__n" id="comboBarN">0</span>
+  <span class="combo-bar__t"><b id="comboBarTotal">0 Bs</b><small id="comboBarNames"></small></span>
+  <span class="combo-bar__go">Ver combo <svg><use href="#i-arrow"/></svg></span>
+</button>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Promoción" hidden>
+  <button type="button" class="icon-btn lightbox__close" id="lbClose" aria-label="Cerrar"><svg><use href="#i-close"/></svg></button>
+  <button type="button" class="icon-btn lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Anterior"><svg style="transform:scaleX(-1)"><use href="#i-chev"/></svg></button>
+  <figure>
+    <img id="lbImg" alt="">
+    <figcaption><span id="lbCap"></span><a class="btn btn--ghost btn--sm" id="lbDown" href="#" download><svg><use href="#i-down"/></svg> Guardar</a></figcaption>
+  </figure>
+  <button type="button" class="icon-btn lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Siguiente"><svg><use href="#i-chev"/></svg></button>
+</div>
+
+<!-- ============ MIKA · asistente ============ -->
+<button class="mika-fab" id="mikaFab" type="button" aria-controls="mika" aria-expanded="false">
+  <img src="img/logo-128.webp" alt="" width="52" height="52">
+  <span class="mika-fab__label" id="mikaFabLabel">Pregúntale a Mika</span>
+  <i class="mika-fab__ping" aria-hidden="true"></i>
+</button>
+
+<section class="mika" id="mika" role="dialog" aria-label="Chat con Mika" aria-hidden="true">
+  <header class="mika__head">
+    <img src="img/logo-128.webp" alt="" width="40" height="40">
+    <div>
+      <b>Mika</b>
+      <small><i></i> Asistente de Mikaela 3K · responde al instante</small>
+    </div>
+    <button type="button" class="icon-btn" id="mikaClose" aria-label="Cerrar chat"><svg><use href="#i-close"/></svg></button>
+  </header>
+  <div class="mika__log" id="mikaLog" aria-live="polite"></div>
+  <div class="mika__chips" id="mikaChips"></div>
+  <form class="mika__form" id="mikaForm" autocomplete="off">
+    <input id="mikaInput" type="text" placeholder="Pregunta precios, pagos o qué te conviene…" aria-label="Escribe tu pregunta" maxlength="300">
+    <button type="submit" aria-label="Enviar"><svg><use href="#i-send"/></svg></button>
+  </form>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ============ ACCESO ============ -->
+<div class="modal" id="modalAcceso" role="dialog" aria-modal="true" aria-labelledby="accesoTitulo" hidden>
+  <div class="modal__caja">
+    <button type="button" class="icon-btn modal__x" id="accesoCerrar" aria-label="Cerrar"><svg><use href="#i-close"/></svg></button>
+    <img class="modal__logo" src="img/logo-128.webp" alt="" width="64" height="64">
+    <h2 id="accesoTitulo">Entra a tu cuenta</h2>
+    <p class="modal__sub" id="accesoSub">Tu saldo, tus cuentas compradas y tus pedidos, en un solo lugar.</p>
+
+    <form id="formAcceso" autocomplete="on">
+      <label class="field field--dark" id="campoNombre" hidden><span>Tu nombre</span><input id="acNombre" type="text" autocomplete="name" placeholder="Ej. Andrea"></label>
+      <label class="field field--dark" id="campoWhats" hidden><span>WhatsApp</span><input id="acWhats" type="tel" autocomplete="tel" placeholder="Ej. 700 12345"></label>
+      <label class="field field--dark"><span>Correo</span><input id="acCorreo" type="email" autocomplete="email" required placeholder="tucorreo@gmail.com"></label>
+      <label class="field field--dark"><span>Contraseña</span><input id="acClave" type="password" autocomplete="current-password" required minlength="6" placeholder="Mínimo 6 caracteres"></label>
+      <p class="modal__error" id="acError" hidden></p>
+      <button class="btn btn--primary btn--block" type="submit" id="acEnviar">Entrar</button>
+    </form>
+
+    <div class="modal__pies">
+      <button type="button" class="linkish" id="acCambiar">¿No tienes cuenta? Créala aquí</button>
+      <button type="button" class="linkish" id="acOlvide">Olvidé mi contraseña</button>
+    </div>
+    <p class="modal__prueba" id="acPrueba" hidden>Modo prueba: los datos se guardan solo en este navegador.</p>
+  </div>
+</div>
+
+<!-- ============ MI CUENTA ============ -->
+<aside class="cuenta" id="cuenta" role="dialog" aria-hidden="true" aria-labelledby="cuentaTitulo">
+  <header class="cuenta__head">
+    <div>
+      <p class="cart__k" id="cuentaRol">Mi cuenta</p>
+      <h2 id="cuentaTitulo">Hola</h2>
+    </div>
+    <button type="button" class="icon-btn" id="cuentaCerrar" aria-label="Cerrar"><svg><use href="#i-close"/></svg></button>
+  </header>
+
+  <div class="cuenta__saldo">
+    <div><span>Saldo disponible</span><b id="cuentaSaldo">0 Bs</b></div>
+    <button class="btn btn--primary btn--sm" type="button" id="cuentaRecargar"><svg><use href="#i-plus"/></svg> Recargar</button>
+  </div>
+
+  <div class="cuenta__tabs" role="tablist">
+    <button type="button" role="tab" data-tab="cuentas" aria-selected="true">Mis cuentas</button>
+    <button type="button" role="tab" data-tab="recargas" aria-selected="false">Recargas</button>
+    <button type="button" role="tab" data-tab="movs" aria-selected="false">Movimientos</button>
+  </div>
+
+  <div class="cuenta__body">
+    <div data-panel="cuentas" id="panelCuentas"></div>
+    <div data-panel="recargas" id="panelRecargas" hidden></div>
+    <div data-panel="movs" id="panelMovs" hidden></div>
+  </div>
+
+  <footer class="cuenta__foot">
+    <a class="linkish" id="cuentaPanelAdmin" href="panel.html" hidden>Abrir panel de administración</a>
+    <button type="button" class="linkish" id="cuentaSalir">Cerrar sesión</button>
+  </footer>
+</aside>
+
+<!-- ============ RECARGA ============ -->
+<div class="modal" id="modalRecarga" role="dialog" aria-modal="true" aria-labelledby="recargaTitulo" hidden>
+  <div class="modal__caja">
+    <button type="button" class="icon-btn modal__x" id="recargaCerrar" aria-label="Cerrar"><svg><use href="#i-close"/></svg></button>
+    <h2 id="recargaTitulo">Recargar saldo</h2>
+    <p class="modal__sub">Paga con el QR, escribe cuánto pagaste y sube la foto del comprobante. Mikaela lo aprueba y tu saldo queda cargado.</p>
+
+    <div class="recarga__qr">
+      <img src="img/qr-altoke.webp" alt="QR de pago Altoke" width="130" height="132" loading="lazy">
+      <div>
+        <p><b>QR Altoke</b></p>
+        <p>Cuenta <b>2617575-000-002</b></p>
+        <p>En referencia coloca <b>Varios</b></p>
+        <a class="linkish" href="img/qr-altoke.png" download="QR-Mikaela-3K.png">Guardar el QR</a>
+      </div>
+    </div>
+
+    <form id="formRecarga">
+      <label class="field field--dark"><span>¿Cuánto pagaste? (Bs)</span><input id="reMonto" type="number" min="1" step="1" required placeholder="Ej. 100"></label>
+      <div class="montos" id="montosRapidos"></div>
+      <label class="field field--dark"><span>Foto del comprobante</span><input id="reArchivo" type="file" accept="image/*,application/pdf"></label>
+      <label class="field field--dark"><span>Nota (opcional)</span><input id="reNota" type="text" placeholder="Ej. pagué desde el banco de mi mamá"></label>
+      <p class="modal__error" id="reError" hidden></p>
+      <button class="btn btn--primary btn--block" type="submit" id="reEnviar">Enviar solicitud de recarga</button>
+      <p class="modal__nota">También puedes avisarle por <a class="linkish" data-wa="Hola Mikaela 3K, acabo de pedir una recarga de saldo en la web y te envío mi comprobante." href="#" target="_blank" rel="noopener">WhatsApp</a>.</p>
+    </form>
+  </div>
+</div>
+
+<script src="js/config.js" defer></script>
+<script src="js/datos.js" defer></script>
+<script src="js/backend.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/cuenta.js" defer></script>
+<script src="js/mika.js" defer></script>
+</body>
+</html>

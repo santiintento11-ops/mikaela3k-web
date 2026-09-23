@@ -1,0 +1,140 @@
+/* ==========================================================================
+   Mikaela 3K — cuenta, saldo, recargas y zona revendedor
+   ========================================================================== */
+
+/* El atributo hidden siempre manda, aunque el elemento tenga display propio */
+[hidden] { display: none !important; }
+
+.nav__user { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 16px 0 6px; border-radius: 999px; border: 1px solid var(--line); transition: border-color .2s, background-color .2s; }
+.nav__user:hover { border-color: var(--teal); }
+.nav__user__av { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: rgba(93, 193, 185, .14); color: var(--teal-2); font: 800 15px var(--f-display); }
+.nav__user__av svg { width: 18px; height: 18px; }
+.nav__user.is-in .nav__user__av { background: var(--teal); color: var(--ink); }
+.nav__user__txt { display: grid; line-height: 1.15; text-align: left; }
+.nav__user__txt b { font-size: 13.5px; font-weight: 600; }
+.nav__user__txt small { font: 500 11px var(--f-mono); color: var(--teal-2); }
+
+.buy__side { display: grid; gap: 12px; }
+.saldo-card { position: relative; overflow: hidden; padding: 22px 24px 20px; border-radius: 22px; background: linear-gradient(150deg, var(--surface-2), var(--bg-2)); border: 1px solid var(--line); }
+.saldo-card::after { content: ""; position: absolute; right: -60px; top: -80px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(closest-side, rgba(93, 193, 185, .25), transparent); }
+.saldo-card__k { margin: 0; font: 500 11px var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.saldo-card__n { margin: 6px 0 0; font: 900 62px/1 var(--f-display); }
+.saldo-card__n span { font-size: 22px; color: var(--teal-2); margin-left: 4px; }
+.saldo-card__t { margin: 8px 0 16px; font-size: 14.5px; color: var(--muted); max-width: 28rem; }
+.saldo-card__btns { position: relative; display: flex; flex-wrap: wrap; gap: 8px; }
+
+.chip--stock { color: var(--ink); background: var(--teal-2); border-color: var(--teal-2); }
+.chip--no { color: #ffb4b4; background: rgba(255, 90, 90, .12); border-color: rgba(255, 120, 120, .3); }
+.cart__hint { margin: 0; font-size: 13px; color: var(--teal-2); }
+.rev-banner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin: -4px 0 16px; padding: 12px 16px; border-radius: 14px; background: rgba(93, 193, 185, .1); border: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.rev-banner b { color: var(--teal-2); }
+
+/* ------------------------- motivos para revender ------------------------- */
+.motivos { list-style: none; margin: 0 0 clamp(40px, 5vw, 64px); padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.motivos li { padding: 24px; border-radius: 20px; background: rgba(3, 18, 16, .07); border: 1px solid rgba(3, 18, 16, .12); transition: background-color .3s, transform .5s var(--ease); }
+.motivos li:hover { background: rgba(3, 18, 16, .13); transform: translateY(-4px); }
+.motivos b { font: 500 13px var(--f-mono); letter-spacing: .12em; color: rgba(3, 18, 16, .45); }
+.motivos h3 { margin: 12px 0 8px; font: 800 27px/1 var(--f-display); text-transform: uppercase; }
+.motivos p { margin: 0; font-size: 15px; color: rgba(3, 18, 16, .75); }
+
+.postular { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.postular__txt, .postular__form { padding: clamp(22px, 2.6vw, 34px); border-radius: 26px; background: var(--ink); color: var(--text); }
+.postular__txt h3 { margin: 0 0 12px; font: 800 clamp(30px, 3.4vw, 44px)/1 var(--f-display); text-transform: uppercase; }
+.postular__txt p { margin: 0 0 12px; color: var(--muted); font-size: 16px; }
+.postular__nota { font: 500 13px var(--f-mono); color: var(--teal-2); }
+.postular__form { display: grid; gap: 12px; align-content: start; }
+.postular__form .btn { margin-top: 4px; }
+.postular__ok { margin: 0; padding: 12px 14px; border-radius: 12px; background: rgba(93, 193, 185, .12); color: var(--teal-2); font-size: 14px; }
+.field select { height: 48px; padding: 0 14px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--text); }
+.field select:focus { outline: none; border-color: var(--teal); }
+.field input[type="file"] { height: auto; padding: 12px; font-size: 14px; }
+
+/* ---------------------------- zona revendedor ---------------------------- */
+.zona__caja { overflow: hidden; border-radius: 26px; border: 1px solid var(--line); background: linear-gradient(180deg, var(--surface), var(--bg-2)); }
+.zona__lock { display: grid; justify-items: center; text-align: center; gap: 14px; padding: clamp(40px, 6vw, 72px) 24px; }
+.zona__icon { width: 72px; height: 72px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); color: var(--teal); background: rgba(93, 193, 185, .08); }
+.zona__icon svg { width: 34px; height: 34px; }
+.zona__lock h3 { margin: 0; font: 800 clamp(28px, 3.4vw, 40px)/1 var(--f-display); text-transform: uppercase; }
+.zona__lock p { margin: 0; max-width: 42rem; color: var(--muted); }
+.zona__btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 6px; }
+.zona__open { padding: clamp(22px, 3vw, 34px); }
+.zona__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.zona__hola { margin: 0; font: 800 28px/1 var(--f-display); text-transform: uppercase; }
+.zona__sub { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
+.zona__saldo { display: grid; justify-items: end; }
+.zona__saldo span { font: 500 11px var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.zona__saldo b { font: 900 34px/1 var(--f-display); color: var(--teal-2); }
+.zona__pie { margin: 16px 0 0; font-size: 14px; color: var(--muted); }
+.tablaRev { width: 100%; border-collapse: collapse; font-size: 15px; }
+.tablaRev th { padding: 10px 8px; text-align: left; font: 500 11px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); border-bottom: 1px solid var(--line-soft); }
+.tablaRev td { padding: 12px 8px; border-bottom: 1px solid var(--line-soft); }
+.tablaRev td i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+.tablaRev tr.sub td { padding-top: 0; font-size: 13px; color: var(--muted); border-bottom-color: rgba(233, 244, 242, .04); }
+.tablaRev .tuyo { color: var(--teal-2); font-weight: 600; }
+.tablaRev .ganas { font: 400 13px var(--f-mono); color: var(--text); }
+
+/* -------------------------------- ventanas ------------------------------- */
+.modal { position: fixed; inset: 0; z-index: 130; display: grid; place-items: center; padding: 20px; background: rgba(0, 0, 0, .72); backdrop-filter: blur(8px); opacity: 0; overflow-y: auto; transition: opacity .3s; }
+.modal.is-on { opacity: 1; }
+.modal[hidden] { display: none; }
+.modal__caja { position: relative; width: min(440px, 100%); padding: 32px 30px 26px; border-radius: 26px; background: var(--bg-2); border: 1px solid var(--line); box-shadow: 0 40px 120px -20px rgba(0, 0, 0, .9); transform: translateY(16px) scale(.98); transition: transform .45s var(--ease); }
+.modal.is-on .modal__caja { transform: none; }
+.modal__x { position: absolute; top: 14px; right: 14px; }
+.modal__logo { width: 64px; height: 64px; margin-bottom: 14px; border-radius: 50%; }
+.modal__caja h2 { margin: 0 0 8px; font: 900 40px/.95 var(--f-display); text-transform: uppercase; }
+.modal__sub { margin: 0 0 20px; font-size: 15px; color: var(--muted); }
+.modal__caja form { display: grid; gap: 12px; }
+.modal__error { margin: 0; padding: 10px 14px; border-radius: 12px; background: rgba(255, 90, 90, .1); border: 1px solid rgba(255, 120, 120, .25); color: #ffb4b4; font-size: 14px; }
+.modal__pies { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; margin-top: 16px; font-size: 14px; }
+.modal__prueba { margin: 14px 0 0; font: 500 12px var(--f-mono); color: var(--dim); }
+.modal__nota { margin: 4px 0 0; font-size: 13px; color: var(--muted); text-align: center; }
+.montos { display: flex; flex-wrap: wrap; gap: 6px; }
+.montos button { padding: 8px 14px; border-radius: 99px; border: 1px solid var(--line); font-size: 13px; color: var(--teal-2); transition: background-color .2s, color .2s; }
+.montos button:hover { background: var(--teal); color: var(--ink); }
+.recarga__qr { display: grid; grid-template-columns: 130px 1fr; gap: 16px; align-items: center; margin-bottom: 18px; padding: 14px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line-soft); }
+.recarga__qr img { border-radius: 10px; background: #fff; }
+.recarga__qr p { margin: 0 0 4px; font-size: 14px; color: var(--muted); }
+.recarga__qr b { color: var(--text); }
+
+/* ------------------------------- mi cuenta ------------------------------- */
+.cuenta { position: fixed; z-index: 85; top: 10px; right: 10px; bottom: 10px; width: min(460px, calc(100vw - 20px)); display: flex; flex-direction: column; border-radius: 26px; background: var(--bg-2); border: 1px solid var(--line); box-shadow: 0 40px 120px -20px rgba(0, 0, 0, .9); transform: translateX(calc(100% + 20px)); visibility: hidden; transition: transform .6s var(--ease-in-out); }
+.cuenta.is-open { transform: none; visibility: visible; }
+.cuenta__head { display: flex; justify-content: space-between; align-items: flex-start; padding: 22px 22px 12px; }
+.cuenta__head h2 { margin: 4px 0 0; font: 900 38px/.9 var(--f-display); text-transform: uppercase; }
+.cuenta__saldo { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 22px 14px; padding: 16px 18px; border-radius: 18px; background: linear-gradient(140deg, rgba(93, 193, 185, .16), rgba(93, 193, 185, .04)); border: 1px solid var(--line); }
+.cuenta__saldo span { display: block; font: 500 11px var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.cuenta__saldo b { font: 900 34px/1 var(--f-display); }
+.cuenta__tabs { display: flex; gap: 6px; padding: 0 22px 10px; }
+.cuenta__tabs button { flex: 1; padding: 10px 8px; border-radius: 12px; border: 1px solid transparent; font-size: 13.5px; color: var(--muted); transition: color .2s, border-color .2s, background-color .2s; }
+.cuenta__tabs button[aria-selected="true"] { color: var(--text); border-color: var(--line); background: var(--surface); }
+.cuenta__body { flex: 1; overflow-y: auto; padding: 4px 22px 10px; overscroll-behavior: contain; }
+.cuenta__foot { display: flex; justify-content: space-between; gap: 12px; padding: 14px 22px 20px; border-top: 1px solid var(--line-soft); font-size: 14px; }
+.item { padding: 14px 0; border-bottom: 1px solid var(--line-soft); }
+.item header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.item header b { font: 800 22px/1 var(--f-display); text-transform: uppercase; }
+.item__meta { margin: 6px 0 0; font: 400 12.5px var(--f-mono); color: var(--dim); }
+.item__espera { margin: 10px 0; font-size: 14px; color: var(--muted); }
+.datos { margin: 10px 0 6px; padding: 12px 14px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); font: 500 13.5px/1.6 var(--f-mono); color: var(--teal-2); white-space: pre-wrap; word-break: break-word; }
+.mov { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line-soft); font-size: 14px; }
+.mov small { display: block; margin-top: 2px; font: 400 11.5px var(--f-mono); color: var(--dim); }
+.mov b { font-family: var(--f-mono); font-size: 14px; }
+.mov .mas { color: var(--teal-2); }
+.mov .menos { color: var(--muted); }
+.vacio { padding: 26px 0; text-align: center; font-size: 14.5px; color: var(--muted); }
+
+@media (max-width: 1024px) {
+  .motivos { grid-template-columns: 1fr 1fr; }
+  .postular { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .nav__user__txt { display: none; }
+  .nav__user { padding: 0 6px; }
+  .motivos { grid-template-columns: 1fr; }
+  .saldo-card__n { font-size: 52px; }
+  .cuenta { top: auto; left: 8px; right: 8px; bottom: 8px; width: auto; max-height: 90svh; transform: translateY(calc(100% + 20px)); }
+  .modal__caja { padding: 26px 20px 22px; }
+  .recarga__qr { grid-template-columns: 96px 1fr; }
+  .zona__top { flex-direction: column; align-items: flex-start; }
+  .zona__saldo { justify-items: start; }
+  .tablaRev th:nth-child(4), .tablaRev td:nth-child(4) { display: none; }
+}

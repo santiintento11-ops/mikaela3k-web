@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel · Mikaela 3K Streaming</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#030605">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/cuenta.css">
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body class="panel-body">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2.4a9.6 9.6 0 0 0-8.3 14.5L2.4 21.6l4.8-1.3A9.6 9.6 0 1 0 12 2.4Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.7 7.5c.3-.3.8-.3 1 .1l.9 1.8c.2.3.1.7-.2 1l-.6.6c.6 1.3 1.6 2.3 2.9 2.9l.6-.6c.3-.3.7-.4 1-.2l1.8.9c.4.2.4.7.1 1l-.8.8c-.6.6-1.5.7-2.3.4a9.2 9.2 0 0 1-4.9-4.9c-.3-.8-.2-1.7.4-2.3l.1-.3Z" fill="currentColor"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+</svg>
+
+<div class="ambient" aria-hidden="true"><i></i><i></i></div>
+
+<header class="pnav">
+  <a class="nav__brand" href="index.html">
+    <img src="img/logo-128.webp" alt="" width="44" height="44">
+    <span><b>Mikaela 3K</b><small>Panel</small></span>
+  </a>
+  <div class="pnav__right">
+    <span class="pnav__modo" id="pModo"></span>
+    <a class="btn btn--ghost btn--sm" href="index.html">Ver la web <svg><use href="#i-arrow"/></svg></a>
+    <button class="btn btn--ghost btn--sm" type="button" id="pBorrar" hidden>Borrar datos de prueba</button>
+    <button class="btn btn--ghost btn--sm" type="button" id="pSalir">Salir</button>
+  </div>
+</header>
+
+<main class="pmain">
+  <!-- Sin permiso -->
+  <section class="pbloqueo" id="pBloqueo">
+    <h1>Panel de Mikaela</h1>
+    <p id="pBloqueoTexto">Entra con tu cuenta de administradora para aprobar recargas, cargar cuentas y ver tus ventas.</p>
+    <form id="pForm">
+      <label class="field field--dark"><span>Correo</span><input id="pCorreo" type="email" autocomplete="email" required></label>
+      <label class="field field--dark"><span>Contraseña</span><input id="pClave" type="password" autocomplete="current-password" required></label>
+      <p class="modal__error" id="pError" hidden></p>
+      <button class="btn btn--primary btn--block" type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <!-- Panel -->
+  <section class="ppanel" id="pPanel" hidden>
+    <div class="pcards" id="pResumen"></div>
+
+    <nav class="ptabs" id="pTabs">
+      <button type="button" data-tab="recargas" aria-selected="true">Recargas <b id="nRecargas"></b></button>
+      <button type="button" data-tab="pedidos" aria-selected="false">Pedidos <b id="nPedidos"></b></button>
+      <button type="button" data-tab="stock" aria-selected="false">Cargar cuentas</button>
+      <button type="button" data-tab="precios" aria-selected="false">Precios revendedor</button>
+      <button type="button" data-tab="gente" aria-selected="false">Clientes</button>
+      <button type="button" data-tab="solicitudes" aria-selected="false">Solicitudes <b id="nSolicitudes"></b></button>
+    </nav>
+
+    <div class="ptab" data-panel="recargas">
+      <p class="pintro">Cuando alguien paga con el QR y sube su comprobante, aparece aquí. Revisa el monto y toca <b>Aprobar</b>: el saldo se carga al instante y, si tenía un pedido esperando, se le entrega solo.</p>
+      <div id="listaRecargas"></div>
+    </div>
+
+    <div class="ptab" data-panel="pedidos" hidden>
+      <p class="pintro">Todo lo que compraron con saldo. Los que dicen <b>En camino</b> están esperando que cargues esa cuenta; en cuanto la cargues, se entregan solos.</p>
+      <div id="listaPedidos"></div>
+    </div>
+
+    <div class="ptab" data-panel="stock" hidden>
+      <p class="pintro">Pega aquí las cuentas, <b>una por línea</b>. Cada línea es una cuenta y se entrega tal cual la escribas (correo, contraseña, perfil, PIN…).</p>
+      <div class="pstock">
+        <form id="formStock">
+          <div class="pstock__fila">
+            <label class="field field--dark"><span>Plataforma</span><select id="stPlat"></select></label>
+            <label class="field field--dark"><span>Plan</span><select id="stMeses"><option value="1">1 mes</option><option value="3">3 meses</option></select></label>
+          </div>
+          <label class="field field--dark"><span>Cuentas (una por línea)</span>
+            <textarea id="stTexto" rows="8" placeholder="correo1@gmail.com | clave123 | Perfil: libre&#10;correo2@gmail.com | clave456 | PIN 1234"></textarea>
+          </label>
+          <button class="btn btn--primary" type="submit">Cargar al stock</button>
+          <p class="modal__error" id="stError" hidden></p>
+        </form>
+        <aside class="pstock__hay">
+          <h3>Stock disponible</h3>
+          <div id="listaStock"></div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="ptab" data-panel="precios" hidden>
+      <p class="pintro">Este es el precio que ven <b>solo los revendedores</b>. Si lo dejas vacío, esa plataforma no tendrá precio especial y verán el precio normal.</p>
+      <div id="listaPrecios"></div>
+    </div>
+
+    <div class="ptab" data-panel="gente" hidden>
+      <p class="pintro">Tus clientes y revendedores. Aquí cambias quién es revendedor y puedes ajustar saldo a mano (por ejemplo si te pagaron en efectivo).</p>
+      <div id="listaGente"></div>
+    </div>
+
+    <div class="ptab" data-panel="solicitudes" hidden>
+      <p class="pintro">Quienes quieren ser revendedores. Al aprobar, esa persona pasa a ver los precios de mayor con su misma cuenta.</p>
+      <div id="listaSolicitudes"></div>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/config.js" defer></script>
+<script src="js/datos.js" defer></script>
+<script src="js/backend.js" defer></script>
+<script src="js/panel.js" defer></script>
+</body>
+</html>
