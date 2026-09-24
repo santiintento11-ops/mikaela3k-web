@@ -307,20 +307,40 @@
   $('#cartSend').addEventListener('click', function () {
     var btn = this, label = $('span', btn), original = label.textContent;
     var texto = cartMessage(), file = comprobanteInput.files[0];
+
     function abrirWhatsApp() { window.open(M3K.waLink(texto), '_blank', 'noopener'); }
-    if (file && window.navigator && navigator.share && navigator.canShare) {
-      var datos = { text: texto };
-      try { if (navigator.canShare({ files: [file] })) datos.files = [file]; } catch (e) { /* sin soporte de archivos */ }
-      if (navigator.canShare(datos)) {
-        btn.disabled = true; label.textContent = 'Abriendo…';
-        navigator.share(datos).then(function () {
-          toast('¡Listo! Revisa que tu comprobante haya llegado a Mikaela.');
-        }).catch(function (err) {
-          if (!err || err.name !== 'AbortError') abrirWhatsApp();
-        }).then(function () { btn.disabled = false; label.textContent = original; });
-        return;
-      }
+
+    /* Cuando el navegador no puede pasarle la foto directo a WhatsApp (pasa
+       siempre en computadora: es una regla de seguridad de todos los
+       navegadores, ninguna web la puede saltar), la descargamos sola justo
+       antes de abrir el chat para que solo haya que arrastrarla ahí. */
+    function descargarComprobante() {
+      if (!file) return;
+      var url = URL.createObjectURL(file);
+      var ext = (file.name.match(/\.[a-z0-9]+$/i) || ['.jpg'])[0];
+      var a = document.createElement('a');
+      a.href = url; a.download = 'Comprobante-Mikaela3K' + ext;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+      toast('Descargamos tu comprobante: arrástralo al chat que se acaba de abrir.');
     }
+
+    var puedeCompartirArchivo = false;
+    if (file && window.navigator && navigator.share && navigator.canShare) {
+      try { puedeCompartirArchivo = navigator.canShare({ files: [file] }); } catch (e) { puedeCompartirArchivo = false; }
+    }
+
+    if (puedeCompartirArchivo) {
+      btn.disabled = true; label.textContent = 'Abriendo…';
+      navigator.share({ text: texto, files: [file] }).then(function () {
+        toast('¡Listo! Revisa que tu comprobante haya llegado a Mikaela.');
+      }).catch(function (err) {
+        if (!err || err.name !== 'AbortError') { descargarComprobante(); abrirWhatsApp(); }
+      }).then(function () { btn.disabled = false; label.textContent = original; });
+      return;
+    }
+
+    descargarComprobante();
     abrirWhatsApp();
   });
   window.addEventListener('resize', function () { document.body.classList.toggle('has-combo', cart.length > 0 && window.innerWidth <= 760); });
