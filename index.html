@@ -34,6 +34,8 @@
   <symbol id="i-send" viewBox="0 0 24 24"><path d="M4.5 12 20 4.5 15.5 20l-3.2-6.3L4.5 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m12.3 13.7 3.4-3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.5c.5 4.6 2.9 7 7.5 7.5-4.6.5-7 2.9-7.5 7.5-.5-4.6-2.9-7-7.5-7.5 4.6-.5 7-2.9 7.5-7.5Z" fill="currentColor"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 4.5H4.5V9M15 4.5h4.5V9M9 19.5H4.5V15M15 19.5h4.5V15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></symbol>
 </svg>
 
 <!-- Intro: sintonizando -->
@@ -150,6 +152,15 @@
   <section class="moods" aria-label="¿Qué quieres ver hoy?">
     <p class="moods__q"><em>¿Qué quieres ver hoy?</em></p>
     <div class="moods__list" id="moods"></div>
+  </section>
+
+  <!-- ============ TUTORIALES ============ -->
+  <section class="section tutos" id="tutoriales" aria-labelledby="tutosTitle">
+    <header class="sec-head" data-reveal>
+      <p class="sec-tag"><span>Videos</span>Míralo en acción</p>
+      <h2 id="tutosTitle">Dos minutos<br><em>y ya sabes</em> cómo.</h2>
+    </header>
+    <div class="tutos__grid" id="tutosGrid"></div>
   </section>
 
   <!-- ============ MARQUESINA ============ -->
@@ -437,6 +448,12 @@
     <figcaption><span id="lbCap"></span><a class="btn btn--ghost btn--sm" id="lbDown" href="#" download><svg><use href="#i-down"/></svg> Guardar</a></figcaption>
   </figure>
   <button type="button" class="icon-btn lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Siguiente"><svg><use href="#i-chev"/></svg></button>
+</div>
+
+<!-- ============ VIDEO EN GRANDE ============ -->
+<div class="video-lb" id="videoLb" role="dialog" aria-modal="true" aria-label="Video" hidden>
+  <button type="button" class="icon-btn video-lb__close" id="videoLbClose" aria-label="Cerrar"><svg><use href="#i-close"/></svg></button>
+  <div class="video-lb__stage" id="videoLbStage"></div>
 </div>
 
 <!-- ============ MIKA · asistente ============ -->

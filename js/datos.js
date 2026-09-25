@@ -101,6 +101,12 @@ M3K.promos = [
   { id: 'tv',     titulo: 'TV por cable', img: 'img/promo-tv-cable', w: 1024, h: 1536 }
 ];
 
+/* Videos tutoriales */
+M3K.tutoriales = [
+  { id: 'compra', titulo: 'Tutorial para hacer tu compra', video: 'video/tutorial-compra.mp4', poster: 'img/tuto-compra.jpg' },
+  { id: 'revender', titulo: 'Tutorial para revender', video: 'video/tutorial-revender.mp4', poster: 'img/tuto-revender.jpg' }
+];
+
 /* Utilidades de precio compartidas por la web y por Mika */
 M3K.buscar = function (id) { return M3K.plataformas.find(function (p) { return p.id === id; }); };
 M3K.precio = function (p, meses) { return meses === 3 && p.p3 ? p.p3 : p.p1; };

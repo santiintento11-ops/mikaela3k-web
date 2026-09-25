@@ -631,6 +631,68 @@
   }
   M3K.ui.focusTile = focusTile;
 
+  /* ---------- Tutoriales ---------- */
+  (function tutoriales() {
+    var grid = $('#tutosGrid');
+    if (!grid) return;
+    grid.innerHTML = M3K.tutoriales.map(function (t) {
+      var vid = 'tutoVideo-' + t.id;
+      return '<article class="tuto">' +
+        '<div class="tuto__frame">' +
+          '<video class="tuto__video" id="' + vid + '" poster="' + t.poster + '" controls playsinline preload="metadata" muted>' +
+            '<source src="' + t.video + '" type="video/mp4">' +
+          '</video>' +
+          '<button type="button" class="tuto__play" data-play="' + vid + '" aria-label="Reproducir"><svg><use href="#i-play"/></svg></button>' +
+          '<button type="button" class="tuto__ampliar" data-ampliar="' + vid + '" aria-label="Ver en grande"><svg><use href="#i-expand"/></svg></button>' +
+        '</div>' +
+        '<p class="tuto__cap">' + esc(t.titulo) + '</p>' +
+      '</article>';
+    }).join('');
+
+    /* "Ver en grande": el mismo <video> se muda a un recuadro grande sobre
+       la página (sin pedirle permiso de pantalla completa al navegador,
+       que algunos celulares y navegadores restringen). Sigue sonando y
+       reproduciendo tal cual estaba. */
+    var videoLb = $('#videoLb'), videoLbStage = $('#videoLbStage');
+    var lbOrigenPadre = null, lbOrigenSiguiente = null;
+    function agrandar(v) {
+      lbOrigenPadre = v.parentNode; lbOrigenSiguiente = v.nextSibling;
+      videoLbStage.appendChild(v);
+      videoLb.hidden = false;
+      requestAnimationFrame(function () { videoLb.classList.add('is-on'); });
+      document.body.classList.add('is-locked');
+      v.muted = false;
+      v.play().catch(function () {});
+    }
+    function cerrarAgrandado() {
+      var v = videoLbStage.firstElementChild;
+      if (v && lbOrigenPadre) lbOrigenPadre.insertBefore(v, lbOrigenSiguiente);
+      videoLb.classList.remove('is-on');
+      document.body.classList.remove('is-locked');
+      setTimeout(function () { videoLb.hidden = true; }, 350);
+    }
+    $('#videoLbClose').addEventListener('click', cerrarAgrandado);
+    videoLb.addEventListener('click', function (e) { if (e.target === videoLb) cerrarAgrandado(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !videoLb.hidden) cerrarAgrandado(); });
+
+    grid.addEventListener('click', function (e) {
+      var amp = e.target.closest('[data-ampliar]');
+      if (amp) { agrandar(document.getElementById(amp.getAttribute('data-ampliar'))); return; }
+      var play = e.target.closest('[data-play]');
+      if (play) {
+        var v2 = document.getElementById(play.getAttribute('data-play'));
+        v2.muted = false;
+        v2.play().catch(function () {});
+        play.closest('.tuto__frame').classList.add('is-playing');
+      }
+    });
+
+    Array.prototype.forEach.call($$('.tuto__video'), function (v) {
+      v.addEventListener('play', function () { var f = v.closest('.tuto__frame'); if (f) f.classList.add('is-playing'); });
+      v.addEventListener('pause', function () { var f = v.closest('.tuto__frame'); if (f) f.classList.remove('is-playing'); });
+    });
+  })();
+
   /* ---------- Cartelera + visor ---------- */
   var rail = $('#rail');
   function srcset(pr) {
